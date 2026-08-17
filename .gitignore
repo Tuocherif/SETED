@@ -10,3 +10,6 @@ desktop.ini
 
 # Archives temporaires
 *.zip
+
+# Journal de publication
+.publication.log
