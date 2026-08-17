@@ -3,7 +3,10 @@ chcp 65001 >nul
 cd /d "%~dp0"
 
 set "LOG=%~dp0.publication.log"
+set "MSGFILE=%~dp0.commit-message.txt"
+
 set "MSG=%~1"
+if "%MSG%"=="" if exist "%MSGFILE%" set /p MSG=<"%MSGFILE%"
 if "%MSG%"=="" set "MSG=Mise a jour du site SETED"
 
 echo === Publication SETED === > "%LOG%"
@@ -17,6 +20,8 @@ if errorlevel 1 (
   echo RESULTAT=ERREUR_DEPOT >> "%LOG%"
   exit
 )
+
+if exist "%~dp0.git\index.lock" del /f /q "%~dp0.git\index.lock" >nul 2>&1
 
 git add -A >> "%LOG%" 2>&1
 
@@ -34,6 +39,7 @@ if errorlevel 1 (
   echo RESULTAT=ECHEC >> "%LOG%"
 ) else (
   echo RESULTAT=OK >> "%LOG%"
+  if exist "%MSGFILE%" del /f /q "%MSGFILE%" >nul 2>&1
 )
 
 echo. >> "%LOG%"
