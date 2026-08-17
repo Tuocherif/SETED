@@ -79,43 +79,37 @@ Le site utilise des blocs colorés à la place des photos (visibles avec la ment
 
 ---
 
-## 5. Mise en ligne sur GitHub Pages (gratuit)
+## 5. Publier sur GitHub (dépôt déjà configuré)
 
-Votre dépôt : **https://github.com/Tuocherif/SETED.git**
-Adresse finale du site : **https://tuocherif.github.io/SETED/**
+Ce dossier **est déjà un dépôt Git** relié à **https://github.com/Tuocherif/SETED.git**, avec un premier commit prêt à partir. Il ne reste qu'à l'envoyer.
 
-### Option A — Par l'interface web (le plus simple, sans commande)
+### Publier : double-cliquez sur `publier.bat`
 
-1. Ouvrez https://github.com/Tuocherif/SETED
-2. Cliquez sur **Add file → Upload files**
-3. Glissez **le contenu** du dossier `site-seted` (les 6 fichiers `.html`, `robots.txt`, `sitemap.xml`, et le dossier `assets`) — pas le dossier `site-seted` lui-même
-4. En bas : **Commit changes**
-5. Allez dans **Settings → Pages**
-6. Sous *Source*, choisissez **Deploy from a branch**, branche **main**, dossier **/ (root)** → **Save**
-7. Attendez 1 à 2 minutes, puis ouvrez **https://tuocherif.github.io/SETED/**
+Le script enregistre vos modifications, vous demande une courte description, et envoie tout sur GitHub.
 
-### Option B — En ligne de commande
+**La toute première fois**, une fenêtre de connexion GitHub s'ouvre dans votre navigateur : connectez-vous avec le compte *Tuocherif*, puis relancez `publier.bat`. Windows retient vos identifiants — les fois suivantes, un simple double-clic suffit.
 
-```bash
-cd chemin/vers/site-seted
-git init
-git add .
-git commit -m "Site web SETED"
-git branch -M main
-git remote add origin https://github.com/Tuocherif/SETED.git
-git push -u origin main
-```
+### Activer le site (à faire une seule fois, après le premier envoi)
 
-Puis faites les étapes 5 à 7 de l'option A.
+1. Ouvrez https://github.com/Tuocherif/SETED/settings/pages
+2. Sous *Source* : **Deploy from a branch**
+3. Branche **main**, dossier **/ (root)** → **Save**
+4. Après 1 à 2 minutes, votre site est en ligne sur **https://tuocherif.github.io/SETED/**
 
-### Mettre le site à jour ensuite
+### En ligne de commande (équivalent)
 
 ```bash
-git add .
-git commit -m "Mise à jour des réalisations"
+cd D:\Obsidious\Projects\Websites\SETED
+git add -A
+git commit -m "Mise a jour des photos"
 git push
 ```
-Le site se met à jour tout seul en 1 à 2 minutes.
+
+### Pourquoi Claude ne peut pas publier tout seul
+
+Claude enregistre bien vos modifications dans l'historique Git (`git commit`), mais l'envoi vers GitHub (`git push`) exige vos identifiants GitHub — que Claude ne possède pas et ne doit pas manipuler. D'où le `publier.bat` : Claude prépare, vous validez d'un double-clic.
+
+*Pour automatiser complètement l'envoi, autorisez le connecteur GitHub dans les réglages de Claude (Paramètres → Connecteurs). Claude pourra alors publier directement.*
 
 ---
 
